@@ -48,7 +48,7 @@ class NewPromotion extends Component {
               </form>
 
               <div className="card-footer">
-                <button type="submit" className="btn btn-sm btn-primary"><i className="fa fa-dot-circle-o"></i> Submit</button>
+                <button type="submit" className="btn btn-lg btn-primary"><i className="fa fa-dot-circle-o"></i> Submit</button>
                 <button type="reset" className="btn btn-sm btn-danger"><i className="fa fa-ban"></i> Reset</button>
               </div>
             </div>
