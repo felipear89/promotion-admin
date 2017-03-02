@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 
 class NewPromotion extends Component {
   render() {
@@ -15,32 +16,32 @@ class NewPromotion extends Component {
                     
                     <div className="form-group">
                       <label htmlFor="name">Name</label>
-                      <input id="name" type="text" className="form-control" placeholder="Enter name.."/>  
+                      <input id="name" type="text" className="form-control" />  
                     </div>
 
                     <div className="row">
                       <div className="form-group col-sm-6">
                         <label htmlFor="begin">Begin</label>
-                        <input id="begin" type="text" className="form-control" placeholder="Ex: 17/03/2017 - 10:00"/>
+                        <input id="begin" type="datetime-local" className="form-control" />
                       </div>
                       <div className="form-group col-sm-6">
                         <label htmlFor="finish">Finish</label>
-                        <input id="finish" type="text" className="form-control" placeholder="Ex: 17/03/2018 - 11:00"/>
+                        <input id="finish" type="datetime-local" className="form-control" />
                       </div>
                     </div>
 
                     <div className="row">
                       <div className="form-group col-sm-4">
                         <label htmlFor="utm-source">Utm Source</label>
-                        <input id="utm-source" type="text" className="form-control" placeholder="Enter Utm Source.."/>
+                        <input id="utm-source" type="text" className="form-control" />
                       </div>
                       <div className="form-group col-sm-4">
                         <label htmlFor="utm-medium">Utm Medium</label>
-                        <input id="utm-medium" type="text" className="form-control" placeholder="Enter Utm Medium.."/>
+                        <input id="utm-medium" type="text" className="form-control" />
                       </div>
                       <div className="form-group col-sm-4">
                         <label htmlFor="utm-campaign">Utm Campaign</label>
-                        <input id="utm-campaign" type="text" className="form-control" placeholder="Enter Utm Medium.."/>
+                        <input id="utm-campaign" type="text" className="form-control" />
                       </div>
                     </div>
                   
@@ -49,7 +50,6 @@ class NewPromotion extends Component {
 
               <div className="card-footer">
                 <button type="submit" className="btn btn-lg btn-primary"><i className="fa fa-dot-circle-o"></i> Submit</button>
-                <button type="reset" className="btn btn-sm btn-danger"><i className="fa fa-ban"></i> Reset</button>
               </div>
             </div>
           </div>
@@ -59,4 +59,6 @@ class NewPromotion extends Component {
   }
 }
 
-export default NewPromotion;
+export default reduxForm({
+  
+})(NewPromotion);
