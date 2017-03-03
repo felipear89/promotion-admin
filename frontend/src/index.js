@@ -13,6 +13,6 @@ const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router routes={routes} history={hashHistory} />, document.getElementById('root')
-  </Provider>
+    <Router routes={routes} history={hashHistory} />
+  </Provider>, document.getElementById('root')
 );
