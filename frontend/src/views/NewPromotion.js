@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import NewPromotionForm from './NewPromotionForm'
+import * as actions from '../actions';
 
 class NewPromotion extends Component {
 
-  handleSubmit = (values) => {
-    // Do something with the form values
-    console.log(values);
+  handleSubmit = (promotion) => {
+    this.props.createPromotion(promotion)
+  }
+
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
   }
 
   render() {
@@ -17,6 +28,7 @@ class NewPromotion extends Component {
               <div className="card-header">
                 <strong>Basic Promotion Data</strong> 
               </div>
+              {this.renderAlert()}
               <NewPromotionForm onSubmit={this.handleSubmit} />
             </div>
           </div>
@@ -26,4 +38,8 @@ class NewPromotion extends Component {
   }
 }
 
-export default NewPromotion;
+function mapStateToProps(state) {
+  return { errorMessage: state.promotions.error };
+}
+
+export default connect(mapStateToProps, actions)(NewPromotion);
