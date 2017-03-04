@@ -1,5 +1,8 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
+const MOMENT_FORMAT = 'DD/MM/YY';
 
 class ListPromotion extends Component {
 
@@ -9,8 +12,8 @@ class ListPromotion extends Component {
         return (
           <tr key={p.name}>
             <td>{p.name}</td>
-            <td>{p.start_date}</td>
-            <td>{p.end_date}</td>
+            <td>{moment(p.start_date).format(MOMENT_FORMAT)}</td>
+            <td>{moment(p.end_date).format(MOMENT_FORMAT)}</td>
             <td><span className="badge badge-primary badge-pill">Update</span></td>
           </tr>
         );
@@ -47,16 +50,6 @@ class ListPromotion extends Component {
                     {this.renderTableLines()}
                   </tbody>
                 </table>
-                <nav>
-                  <ul className="pagination">
-                    <li className="page-item"><a className="page-link" href="#">Prev</a></li>
-                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                    <li className="page-item"><a className="page-link" href="#">4</a></li>
-                    <li className="page-item"><a className="page-link" href="#">Next</a></li>
-                  </ul>
-                </nav>
               </div>
             </div>
           </div>
