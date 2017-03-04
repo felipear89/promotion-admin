@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hashHistory } from 'react-router';
 
 import {
-  CREATE_PROMOTION_ERROR
+  CREATE_PROMOTION_ERROR, FETCH_PROMOTION
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -23,5 +23,12 @@ export function createPromotionError(error) {
   return {
     type: CREATE_PROMOTION_ERROR,
     payload: error
+  };
+}
+
+export function fetchPromotions() {
+  return {
+    type: FETCH_PROMOTION,
+    payload: axios.get(`${ROOT_URL}/promotions`)
   };
 }

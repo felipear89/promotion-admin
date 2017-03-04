@@ -3,12 +3,19 @@ import { connect } from 'react-redux';
 
 class ListPromotion extends Component {
 
-  componentWillMount() {
-    
-  }
-
-  renderTableLine() {
-
+  renderTableLines() {
+    if (this.props.promotions !== undefined) {
+      return this.props.promotions.map(p => {
+        return (
+          <tr key={p.name}>
+            <td>{p.name}</td>
+            <td>{p.start_date}</td>
+            <td>{p.end_date}</td>
+            <td><span className="badge badge-primary badge-pill">Update</span></td>
+          </tr>
+        );
+      });
+    }
   }
 
   renderTableHead() {
@@ -37,7 +44,7 @@ class ListPromotion extends Component {
                 <table className="table table-bordered table-striped table-condensed">
                   {this.renderTableHead()}
                   <tbody>
-                    
+                    {this.renderTableLines()}
                   </tbody>
                 </table>
                 <nav>
@@ -59,4 +66,8 @@ class ListPromotion extends Component {
   }
 }
 
-export default ListPromotion;
+function mapStateToProps(state) {
+  return { promotions: state.promotions.list }
+}
+
+export default connect(mapStateToProps)(ListPromotion);
