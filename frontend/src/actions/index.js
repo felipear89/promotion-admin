@@ -11,7 +11,7 @@ export function createPromotion(promotion) {
   return function(dispatch) {
     axios.post(`${ROOT_URL}/promotions/new`, promotion)
       .then(response => {
-        hashHistory.push('/');
+        hashHistory.push('/promotions');
       })
       .catch(response => {
           dispatch(createPromotionError(response.message))

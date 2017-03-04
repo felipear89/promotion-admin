@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewPromotionForm from './NewPromotionForm'
-import * as actions from '../actions';
+import NewPromotionForm from './new_promotion_form'
+import * as actions from '../../actions';
 
 class NewPromotion extends Component {
 
