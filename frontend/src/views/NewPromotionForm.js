@@ -30,11 +30,11 @@ class NewPromotionForm extends Component {
               </div>
               <div className="form-group col-sm-4">
                 <label htmlFor="utm-medium">Utm Medium</label>
-                <Field id="utm-medium" type="text" name="end_medium" component="input" className="form-control" />
+                <Field id="utm-medium" type="text" name="utm_medium" component="input" className="form-control" />
               </div>
               <div className="form-group col-sm-4">
                 <label htmlFor="utm-campaign">Utm Campaign</label>
-                <Field id="utm-campaign" type="text" name="end_campaign" component="input" className="form-control" />
+                <Field id="utm-campaign" type="text" name="utm_campaign" component="input" className="form-control" />
               </div>
             </div>
         </div>
