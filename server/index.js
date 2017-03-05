@@ -10,6 +10,7 @@ const cors = require('cors');
 
 // DB Setup
 mongoose.connect('mongodb://localhost/promotions');
+mongoose.Promise = global.Promise;
 
 // App Setup
 app.use(morgan('combined'));
