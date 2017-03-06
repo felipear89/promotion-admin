@@ -44,6 +44,21 @@ class NewPromotionForm extends Component {
                 <div className="card-header">Products</div>
                 <div className="card-block">
                   <div className="row">
+                    <div className="form-group col-md-4">
+                      <label htmlFor="select">Select</label>
+                      <select id="select" name="select" className="form-control">
+                        <option value="0">Please select</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                      </select>
+                    </div>
+                    <div className="form-group col-md-4">
+                      <label htmlFor="search_products">Search</label>
+                      <input id="search_products" type="text" className="form-control" />
+                    </div>
+                  </div>
+                  <div className="row">
                     <div className="col-md-6">
                       <div><strong>Include</strong>
                         <table className="table table-hover table-outline table-condensed">
