@@ -39,79 +39,82 @@ class NewPromotionForm extends Component {
           </div>
 
           <div className="row">
-            <div className="col-md-6">
-              <div>
-                <p>Exclude Products</p>
-                <div>
-                  <table className="table table-hover table-outline table-condensed">
-                    <thead className="thead-default">
-                      <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th className="text-md-center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div>
-                <p>Exclude Products</p>
-                <div>
-                  <table className="table table-hover table-outline table-condensed">
-                    <thead className="thead-default">
-                      <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th className="text-md-center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                      <tr>
-                        <td>95106373</td>
-                        <td className="col-3">Apple</td>
-                        <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-header">Products</div>
+                <div className="card-block">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div><strong>Include</strong>
+                        <table className="table table-hover table-outline table-condensed">
+                          <thead className="thead-default">
+                            <tr>
+                              <th>Id</th>
+                              <th>Name</th>
+                              <th className="text-md-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div><strong>Exclude</strong>
+                        <table className="table table-hover table-outline table-condensed">
+                          <thead className="thead-default">
+                            <tr>
+                              <th>Id</th>
+                              <th>Name</th>
+                              <th className="text-md-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                            <tr>
+                              <td>95106373</td>
+                              <td className="col-3">Apple</td>
+                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
