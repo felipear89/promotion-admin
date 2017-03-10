@@ -45,17 +45,26 @@ class NewPromotionForm extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="form-group col-md-4">
-                      <label htmlFor="select">Select</label>
-                      <select id="select" name="select" className="form-control">
-                        <option value="0">Please select</option>
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
+                      <label htmlFor="select_products">Select</label>
+                      <select id="select_products" className="form-control">
+                        <option value="">Please select</option>
+                        <option value="category">Category</option>
+                        <option value="brand">Brand</option>
+                        <option value="product">Product</option>
+                        <option value="sku">Sku</option>
                       </select>
                     </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-md-8">
                       <label htmlFor="search_products">Search</label>
-                      <input id="search_products" type="text" className="form-control" />
+                      <div className="input-group">
+                        <input type="text" id="input3-group2" name="input3-group2" className="form-control" placeholder="Search"/>
+                        <span className="input-group-btn">
+                          <button type="button" className="btn btn-primary"><i className="fa fa-minus fa-lg m-t-2"></i></button>
+                        </span>&nbsp;
+                        <span className="input-group-btn">
+                          <button type="button" className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="row">
