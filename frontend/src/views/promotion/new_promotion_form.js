@@ -1,9 +1,82 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Autosuggest from 'react-autosuggest';
+import axios from 'axios';
+
+/* --------------- */
+/*      Utils      */
+/* --------------- */
+function getMatchingItem(list, value) {
+  const escapedValue = escapeRegexCharacters(value.trim());
+  
+  if (escapedValue === '') {
+    return [];
+  }
+  
+  const regex = new RegExp('^' + escapedValue, 'i');
+
+  return list.filter(item => regex.test(item.name));
+}
+
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
+function escapeRegexCharacters(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/* --------------- */
+/*    Component    */
+/* --------------- */
+function getSuggestionValue(suggestion) {
+  return suggestion.name;
+}
+
+function renderSuggestion(suggestion) {
+  return (
+    <span>{suggestion.name}</span>
+  );
+}
 
 class NewPromotionForm extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      'inputCatalogSearch': '',
+      'catalogSuggestions': []
+    };
+
+  }
+
+  onChangeInputCatalogSearch = (event, { newValue }) => {
+    this.setState({
+      'inputCatalogSearch': newValue
+    });
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    axios.get('http://localhost:3090/catalog').then((res) => {
+      this.setState({
+        'catalogSuggestions': getMatchingItem(res.data, value)
+      });
+    });    
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      'catalogSuggestions': []
+    });
+  };
+
   render() {
     const { handleSubmit } = this.props;
+    const { inputCatalogSearch, catalogSuggestions } = this.state;
+    const inputProps = {
+      'placeholder': "Type the item name",
+      'value': inputCatalogSearch,
+      'onChange': this.onChangeInputCatalogSearch
+    };
+
     return (
       <form onSubmit={handleSubmit}>
         <div className="card-block">
@@ -57,10 +130,18 @@ class NewPromotionForm extends Component {
                     <div className="form-group col-md-8">
                       <label htmlFor="search_products">Search</label>
                       <div className="input-group">
-                        <input type="text" id="input3-group2" name="input3-group2" className="form-control" placeholder="Search"/>
+                        <Autosuggest 
+                          suggestions={catalogSuggestions}
+                          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                          getSuggestionValue={getSuggestionValue}
+                          renderSuggestion={renderSuggestion}
+                          inputProps={inputProps} />
+                        &nbsp;
                         <span className="input-group-btn">
                           <button type="button" className="btn btn-primary"><i className="fa fa-minus fa-lg m-t-2"></i></button>
-                        </span>&nbsp;
+                        </span>
+                        &nbsp;
                         <span className="input-group-btn">
                           <button type="button" className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
                         </span>
