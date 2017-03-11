@@ -43,9 +43,10 @@ class NewPromotionForm extends Component {
 
     this.state = {
       'inputCatalogSearch': '',
-      'catalogSuggestions': []
+      'catalogSuggestions': [],
+      'includeItems': {},
+      'selectedItem': {}
     };
-
   }
 
   onChangeInputCatalogSearch = (event, { newValue }) => {
@@ -67,6 +68,43 @@ class NewPromotionForm extends Component {
       'catalogSuggestions': []
     });
   };
+
+  onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+    this.setState({
+      'selectedItem': suggestion
+    });
+  }
+
+  renderIncludeItems = () => {
+    var renderView = [];
+    var items = this.state.includeItems;
+    for (var id in items) {
+      if (items.hasOwnProperty(id)) {
+        var item = items[id];
+        renderView.push((
+          <tr key={id}>
+            <td>{id}</td>
+            <td className="col-3">{item.name}</td>
+            <td className="col-3">{item.type}</td>
+            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+          </tr>
+        ));    
+      }
+    }
+    return renderView;
+  }
+
+  onClickAddItem() {
+    var id = this.state.selectedItem.id;
+    if (id > 0) {
+      var includeItems = this.state.includeItems;
+      includeItems[id] = this.state.selectedItem;
+      this.setState({
+        'inputCatalogSearch': '',
+        includeItems
+      });
+    }
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -134,6 +172,7 @@ class NewPromotionForm extends Component {
                           suggestions={catalogSuggestions}
                           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                          onSuggestionSelected={this.onSuggestionSelected}
                           getSuggestionValue={getSuggestionValue}
                           renderSuggestion={renderSuggestion}
                           inputProps={inputProps} />
@@ -143,7 +182,7 @@ class NewPromotionForm extends Component {
                         </span>
                         &nbsp;
                         <span className="input-group-btn">
-                          <button type="button" className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
+                          <button type="button" onClick={this.onClickAddItem.bind(this)} className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
                         </span>
                       </div>
                     </div>
@@ -156,30 +195,12 @@ class NewPromotionForm extends Component {
                             <tr>
                               <th>Id</th>
                               <th>Name</th>
+                              <th>Type</th>
                               <th className="text-md-center">Action</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
+                            {this.renderIncludeItems()}
                           </tbody>
                         </table>
                       </div>
@@ -195,26 +216,7 @@ class NewPromotionForm extends Component {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
-                            <tr>
-                              <td>95106373</td>
-                              <td className="col-3">Apple</td>
-                              <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
-                            </tr>
+                            
                           </tbody>
                         </table>
                       </div>
