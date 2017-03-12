@@ -45,6 +45,7 @@ class NewPromotionForm extends Component {
       'inputCatalogSearch': '',
       'catalogSuggestions': [],
       'includeItems': {},
+      'excludeItems': {},
       'selectedItem': {}
     };
   }
@@ -75,9 +76,9 @@ class NewPromotionForm extends Component {
     });
   }
 
-  renderIncludeItems = () => {
+  renderItems = (stateName) => {
     var renderView = [];
-    var items = this.state.includeItems;
+    var items = this.state[stateName];
     for (var id in items) {
       if (items.hasOwnProperty(id)) {
         var item = items[id];
@@ -86,7 +87,7 @@ class NewPromotionForm extends Component {
             <td>{id}</td>
             <td className="col-3">{item.name}</td>
             <td className="col-3">{item.type}</td>
-            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2" onClick={() => this.onClickRemoveItem(id, items, 'includeItems')}></i></td>
+            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2" onClick={() => this.onClickRemoveItem(id, items, stateName)}></i></td>
           </tr>
         ));    
       }
@@ -101,16 +102,29 @@ class NewPromotionForm extends Component {
     })
   }
 
-  onClickAddItem = () => {
+  onClickAddItem = (stateName) => {
     var id = this.state.selectedItem.id;
     if (id > 0) {
-      var includeItems = this.state.includeItems;
-      includeItems[id] = this.state.selectedItem;
+      var items = this.state[stateName];
+      this.state[stateName][id] = this.state.selectedItem;
       this.setState({
         'inputCatalogSearch': '',
-        includeItems
+        stateName
       });
     }
+  }
+
+  renderItemsTableHeader = () => {
+    return (
+      <thead className="thead-default">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th className="text-md-center">Action</th>
+        </tr>
+      </thead>
+    );
   }
 
   render() {
@@ -185,11 +199,11 @@ class NewPromotionForm extends Component {
                           inputProps={inputProps} />
                         &nbsp;
                         <span className="input-group-btn">
-                          <button type="button" className="btn btn-primary"><i className="fa fa-minus fa-lg m-t-2"></i></button>
+                          <button type="button" onClick={this.onClickAddItem.bind(this, 'includeItems')} className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
                         </span>
                         &nbsp;
                         <span className="input-group-btn">
-                          <button type="button" onClick={this.onClickAddItem.bind(this)} className="btn btn-primary"><i className="fa fa-plus fa-lg m-t-2"></i></button>
+                          <button type="button" onClick={this.onClickAddItem.bind(this, 'excludeItems')} className="btn btn-primary"><i className="fa fa-minus fa-lg m-t-2"></i></button>
                         </span>
                       </div>
                     </div>
@@ -198,16 +212,9 @@ class NewPromotionForm extends Component {
                     <div className="col-md-6">
                       <div><strong>Include</strong>
                         <table className="table table-hover table-outline table-condensed">
-                          <thead className="thead-default">
-                            <tr>
-                              <th>Id</th>
-                              <th>Name</th>
-                              <th>Type</th>
-                              <th className="text-md-center">Action</th>
-                            </tr>
-                          </thead>
+                            {this.renderItemsTableHeader()}
                           <tbody>
-                            {this.renderIncludeItems()}
+                            {this.renderItems('includeItems')}
                           </tbody>
                         </table>
                       </div>
@@ -215,15 +222,9 @@ class NewPromotionForm extends Component {
                     <div className="col-md-6">
                       <div><strong>Exclude</strong>
                         <table className="table table-hover table-outline table-condensed">
-                          <thead className="thead-default">
-                            <tr>
-                              <th>Id</th>
-                              <th>Name</th>
-                              <th className="text-md-center">Action</th>
-                            </tr>
-                          </thead>
+                          {this.renderItemsTableHeader()}
                           <tbody>
-                            
+                            {this.renderItems('excludeItems')}
                           </tbody>
                         </table>
                       </div>
