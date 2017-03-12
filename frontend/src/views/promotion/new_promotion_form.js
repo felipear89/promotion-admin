@@ -79,17 +79,22 @@ class NewPromotionForm extends Component {
   renderItems = (stateName) => {
     var renderView = [];
     var items = this.state[stateName];
+
+    var renderLine = (id, stateName, items, item) => {
+      return (
+        <tr key={id}>
+          <td>{id}</td>
+          <td className="col-3">{item.name}</td>
+          <td className="col-3">{item.type}</td>
+          <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2" onClick={() => this.onClickRemoveItem(id, items, stateName)}></i></td>
+        </tr>
+      );
+    };
+
     for (var id in items) {
       if (items.hasOwnProperty(id)) {
         var item = items[id];
-        renderView.push((
-          <tr key={id}>
-            <td>{id}</td>
-            <td className="col-3">{item.name}</td>
-            <td className="col-3">{item.type}</td>
-            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2" onClick={() => this.onClickRemoveItem(id, items, stateName)}></i></td>
-          </tr>
-        ));    
+        renderView.push(renderLine(id, stateName, items, item));    
       }
     }
     return renderView;
@@ -106,10 +111,10 @@ class NewPromotionForm extends Component {
     var id = this.state.selectedItem.id;
     if (id > 0) {
       var items = this.state[stateName];
-      this.state[stateName][id] = this.state.selectedItem;
+      items[id] = this.state.selectedItem;
       this.setState({
         'inputCatalogSearch': '',
-        stateName
+        stateName: items
       });
     }
   }
