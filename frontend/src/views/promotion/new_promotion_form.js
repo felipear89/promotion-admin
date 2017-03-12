@@ -86,7 +86,7 @@ class NewPromotionForm extends Component {
             <td>{id}</td>
             <td className="col-3">{item.name}</td>
             <td className="col-3">{item.type}</td>
-            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2"></i></td>
+            <td className="text-md-center"><i className="fa fa-trash-o fa-lg m-t-2" onClick={() => this.onClickRemoveItem(id, items, 'includeItems')}></i></td>
           </tr>
         ));    
       }
@@ -94,7 +94,14 @@ class NewPromotionForm extends Component {
     return renderView;
   }
 
-  onClickAddItem() {
+  onClickRemoveItem = (id, list, stateName) => {
+    delete list[id];
+    this.setState({
+      stateName: list
+    })
+  }
+
+  onClickAddItem = () => {
     var id = this.state.selectedItem.id;
     if (id > 0) {
       var includeItems = this.state.includeItems;
